@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.job.jobservice.dao.ProjectAutoReportJobMapper">
+  <resultMap id="BaseResultMap" type="com.example.job.jobservice.domain.ProjectAutoReportJob">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="auto_report_title" jdbcType="VARCHAR" property="autoReportTitle" />
+    <result column="auto_report_to" jdbcType="VARCHAR" property="autoReportTo" />
+    <result column="auto_report_to_other" jdbcType="VARCHAR" property="autoReportToOther" />
+    <result column="auto_report_cc" jdbcType="VARCHAR" property="autoReportCc" />
+    <result column="auto_report_cc_other" jdbcType="VARCHAR" property="autoReportCcOther" />
+    <result column="auto_report_template" jdbcType="INTEGER" property="autoReportTemplate" />
+    <result column="auto_report_data" jdbcType="VARCHAR" property="autoReportData" />
+    <result column="auto_report_cron" jdbcType="VARCHAR" property="autoReportCron" />
+    <result column="auto_report_creator" jdbcType="VARCHAR" property="autoReportCreator" />
+    <result column="auto_report_status" jdbcType="INTEGER" property="autoReportStatus" />
+    <result column="auto_report_last_execute_time" jdbcType="TIMESTAMP" property="autoReportLastExecuteTime" />
+    <result column="is_del" jdbcType="TINYINT" property="isDel" />
+    <result column="created_stime" jdbcType="TIMESTAMP" property="createdStime" />
+    <result column="modified_stime" jdbcType="TIMESTAMP" property="modifiedStime" />
+    <result column="auto_report_from" jdbcType="VARCHAR" property="autoReportFrom" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, auto_report_title, auto_report_to, auto_report_to_other, auto_report_cc, auto_report_cc_other, auto_report_template, auto_report_data,
+    auto_report_cron, auto_report_creator, auto_report_status, auto_report_last_execute_time, 
+    is_del, created_stime, modified_stime, auto_report_from
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_auto_report
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project_auto_report
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.job.jobservice.domain.ProjectAutoReportJob">
+    insert into project_auto_report (id, auto_report_title, auto_report_to, auto_report_to_other, auto_report_cc, auto_report_cc_other,
+      auto_report_template, auto_report_data, auto_report_cron, auto_report_creator, auto_report_status,
+      auto_report_last_execute_time, is_del, created_stime, 
+      modified_stime,auto_report_from)
+    values (#{id,jdbcType=INTEGER}, #{autoReportTitle,jdbcType=VARCHAR}, #{autoReportTo,jdbcType=VARCHAR}, 
+      #{autoReportToOther,jdbcType=VARCHAR}, #{autoReportCc,jdbcType=VARCHAR},
+      #{autoReportCcOther,jdbcType=VARCHAR}, #{autoReportTemplate,jdbcType=INTEGER},
+      #{autoReportData,jdbcType=VARCHAR}, #{autoReportCron,jdbcType=VARCHAR}, #{autoReportCreator,jdbcType=VARCHAR},
+      #{autoReportStatus,jdbcType=INTEGER}, #{autoReportLastExecuteTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=TINYINT},
+      #{createdStime,jdbcType=TIMESTAMP}, #{modifiedStime,jdbcType=TIMESTAMP}, #{autoReportFrom,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.job.jobservice.domain.ProjectAutoReportJob">
+    insert into project_auto_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="autoReportTitle != null">
+        auto_report_title,
+      </if>
+      <if test="autoReportTo != null">
+        auto_report_to,
+      </if>
+      <if test="autoReportFrom != null">
+        auto_report_from,
+      </if>
+      <if test="autoReportToOther != null">
+        auto_report_to_other,
+      </if>
+      <if test="autoReportCc != null">
+        auto_report_cc,
+      </if>
+      <if test="autoReportCcOther != null">
+        auto_report_cc_other,
+      </if>
+      <if test="autoReportTemplate != null">
+        auto_report_template,
+      </if>
+      <if test="autoReportData != null">
+        auto_report_data,
+      </if>
+      <if test="autoReportCron != null">
+        auto_report_cron,
+      </if>
+      <if test="autoReportCreator != null">
+        auto_report_creator,
+      </if>
+      <if test="autoReportStatus != null">
+        auto_report_status,
+      </if>
+      <if test="autoReportLastExecuteTime != null">
+        auto_report_last_execute_time,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="createdStime != null">
+        created_stime,
+      </if>
+      <if test="modifiedStime != null">
+        modified_stime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="autoReportTitle != null">
+        #{autoReportTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportTo != null">
+        #{autoReportTo,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportFrom != null">
+        #{autoReportFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportToOther != null">
+        #{autoReportToOther,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCc != null">
+        #{autoReportCc,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCcOther != null">
+        #{autoReportCcOther,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportTemplate != null">
+        #{autoReportTemplate,jdbcType=INTEGER},
+      </if>
+      <if test="autoReportData != null">
+        #{autoReportData,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCron != null">
+        #{autoReportCron,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCreator != null">
+        #{autoReportCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportStatus != null">
+        #{autoReportStatus,jdbcType=INTEGER},
+      </if>
+      <if test="autoReportLastExecuteTime != null">
+        #{autoReportLastExecuteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createdStime != null">
+        #{createdStime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedStime != null">
+        #{modifiedStime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.job.jobservice.domain.ProjectAutoReportJob">
+    update project_auto_report
+    <set>
+      <if test="autoReportTitle != null">
+        auto_report_title = #{autoReportTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportTo != null">
+        auto_report_to = #{autoReportTo,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportFrom != null">
+        auto_report_from = #{autoReportFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportToOther != null">
+        auto_report_to_other = #{autoReportToOther,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCc != null">
+        auto_report_cc = #{autoReportCc,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCcOther != null">
+        auto_report_cc_other = #{autoReportCcOther,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportTemplate != null">
+        auto_report_template = #{autoReportTemplate,jdbcType=INTEGER},
+      </if>
+      <if test="autoReportData != null">
+        auto_report_data = #{autoReportData,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCron != null">
+        auto_report_cron = #{autoReportCron,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportCreator != null">
+        auto_report_creator = #{autoReportCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="autoReportStatus != null">
+        auto_report_status = #{autoReportStatus,jdbcType=INTEGER},
+      </if>
+      <if test="autoReportLastExecuteTime != null">
+        auto_report_last_execute_time = #{autoReportLastExecuteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createdStime != null">
+        created_stime = #{createdStime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedStime != null">
+        modified_stime = #{modifiedStime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.job.jobservice.domain.ProjectAutoReportJob">
+    update project_auto_report
+    set auto_report_title = #{autoReportTitle,jdbcType=VARCHAR},
+      auto_report_to = #{autoReportTo,jdbcType=VARCHAR},
+      auto_report_from = #{autoReportFrom,jdbcType=VARCHAR},
+      auto_report_cc = #{autoReportCc,jdbcType=VARCHAR},
+      auto_report_to_other = #{autoReportToOther,jdbcType=VARCHAR},
+      auto_report_cc_other = #{autoReportCcOther,jdbcType=VARCHAR},
+      auto_report_template = #{autoReportTemplate,jdbcType=INTEGER},
+      auto_report_data = #{autoReportData,jdbcType=VARCHAR},
+      auto_report_cron = #{autoReportCron,jdbcType=VARCHAR},
+      auto_report_creator = #{autoReportCreator,jdbcType=VARCHAR},
+      auto_report_status = #{autoReportStatus,jdbcType=INTEGER},
+      auto_report_last_execute_time = #{autoReportLastExecuteTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=TINYINT},
+      created_stime = #{createdStime,jdbcType=TIMESTAMP},
+      modified_stime = #{modifiedStime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllOpenJob" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from project_auto_report
+    where auto_report_status = 1 and is_del = 0
+  </select>
+
+  <select id="selectAllJob" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from project_auto_report
+    where is_del = 0 order by id desc;
+  </select>
+
+  <update id="deleteByKey" parameterType="java.lang.Integer">
+    update project_auto_report
+    set is_del = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

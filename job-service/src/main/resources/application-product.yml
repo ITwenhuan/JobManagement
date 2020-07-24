@@ -1,0 +1,90 @@
+# 本地开发配置
+server:
+  port: 8199
+
+# mybatis配置
+mybatis:
+  type-aliases-package: com.example.job.jobservice.dao.*
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 开启驼峰命名
+    map-underscore-to-camel-case: true
+    # 打印sql, 方便调试
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  application:
+    name: job-service
+  # spring boot monitor
+  boot:
+    admin:
+      client:
+        url: http://localhost:8299
+        username: admin
+        password: admin
+  # mysql配置
+  datasource:
+    username: root
+    password: Abc890611'''
+    url: jdbc:mysql://localhost:3306/jobInfo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true&failOverReadOnly=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #  连接池配置
+    druid:
+      # 初始化连接数
+      initial-size: 10
+      # 最大连接池数量
+      max-active: 50
+      #最小连接池数量
+      min-idle: 10
+      # 获取连接时最大等待时间；若配置，则默认开启公平锁，并发效率会下降，如果需要可以配置use-unnfair-lock使用非公平锁
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被驱逐的最小时间
+      min-evictable-idle-time-millis: 300000
+      # 用来检测连接是否有效的sql，要求是一个查询语句
+      validation-query: SELECT 1 FROM DUAL
+      # 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-return: false
+      # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      pool-prepared-statements: true
+      # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
+      max-pool-prepared-statement-per-connection-size: 50
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计
+      filters: stat,wall
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # 合并多个DruidDataSource的监控数据
+      use-global-data-source-stat: true
+
+  #redis配置
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        # 接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 2000ms
+        # 连接池中的最小空闲连接
+        max-idle: 8
+        # 连接池中的最大空闲连接
+        min-idle: 0
+    # 连接超时时间
+    timeout: 6000ms
+
+# 日志配置
+logging:
+  config: classpath:logback.xml
+
+params:
+  CROS_MAPPING: /**
+  CROS_ALLOWED_ORIGINS: http://localhost:8100,http://localhost:80
+  CROS_ALLOWED_METHOD: OPTIONS,GET,POST,DELETE,PUT
